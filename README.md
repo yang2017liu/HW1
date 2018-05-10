@@ -151,7 +151,8 @@ video of my working project https://drive.google.com/drive/folders/1mUx35bqMp1dF
 
 With capacitive sensors and Led Lights. The lights light up orderly to guide people move their hand to touch the finger with the light. When you touch the sensor on the gloves, you will activate the sound from the speaker. By following the light to move your finger. you can get a song.
 
-Process
+### Process
+
 After midterm, I changed the idea that using capacitive sensor and using gloves to express it. I want to use arduino to combine processing to make the sound become more elegant, but it is hard for me to figure out after I try so many times with coach. I try use the frequency to make the sound as much elegant as possible.
 
 
