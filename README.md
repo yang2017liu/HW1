@@ -145,8 +145,9 @@ I put the tone and light together.
 video of my working project https://drive.google.com/drive/folders/1mUx35bqMp1dFGFVYQGuQNDQreV9_JPdq
 
 
-#final work
-Therapy gloves
+# final work
+
+### Therapy gloves
 
 With capacitive sensors and Led Lights. The lights light up orderly to guide people move their hand to touch the finger with the light. When you touch the sensor on the gloves, you will activate the sound from the speaker. By following the light to move your finger. you can get a song.
 
