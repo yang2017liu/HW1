@@ -154,5 +154,6 @@ With capacitive sensors and Led Lights. The lights light up orderly to guide peo
 ### Process
 
 After midterm, I changed the idea that using capacitive sensor and using gloves to express it. I want to use arduino to combine processing to make the sound become more elegant, but it is hard for me to figure out after I try so many times with coach. I try use the frequency to make the sound as much elegant as possible.
+![image](／photo／IMG20180426141034.jpg）
 
 
