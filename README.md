@@ -175,4 +175,313 @@ Link : https://drive.google.com/drive/folders/1KQGRy1gQgDJMBPM3WDYBHH_rpInPo0z3
 
 
 
+### Code
+
+#include <CapacitiveSensor.h>
+int ledPin1  = 7;
+int ledPin2  = 11;
+int ledPin3 = 12;
+int ledPin4 = 22;
+int count = 0;
+
+
+ 
+ 
+
+  
+
+CapacitiveSensor   cs_4_8 = CapacitiveSensor(4, 8); // 1M resistor between pins 4 & 8, pin 8 is sensor pin, add a wire and or foil
+CapacitiveSensor   cs_9_10 = CapacitiveSensor(9, 10); // 1M resistor between pins 9 & 10, pin 10 is sensor pin, add a wire and or foil
+CapacitiveSensor   cs_2_3 = CapacitiveSensor(2, 3); // 1M resistor between pins 2 & 3, pin 10 is sensor pin, add a wire and or foil
+CapacitiveSensor   cs_24_26 = CapacitiveSensor(24, 26); // 1M resistor between pins 2 & 3, pin 10 is sensor pin, add a wire and or foil
+int noteRest = 500;
+
+void setup()
+{
+
+
+  Serial.begin(9600);
+  pinMode(ledPin1,OUTPUT);
+  pinMode(ledPin2,OUTPUT);
+  pinMode(ledPin3,OUTPUT);
+  pinMode(ledPin4,OUTPUT);
+  
+
+ //WHY?
+  cs_4_8.set_CS_AutocaL_Millis(0xFFFFFFFF);// turn off autocalibrate on channel 1 - just as an example
+  cs_9_10.set_CS_AutocaL_Millis(0xFFFFFFFF);// turn off autocalibrate on channel 1 - just as an example
+  cs_2_3.set_CS_AutocaL_Millis(0xFFFFFFFF);// turn off autocalibrate on channel 1 - just as an example
+   cs_24_26.set_CS_AutocaL_Millis(0xFFFFFFFF);// turn off autocalibrate on channel 1 - just as an example
+ //Turn all 3 LEDs on - WHY? 
+    digitalWrite(ledPin1,HIGH);
+    //digitalWrite(ledPin2,HIGH);
+    //digitalWrite(ledPin3,HIGH);
+}
+
+void loop()
+{
+  // Why "long"? Why not int?
+  long sensor1 =  cs_4_8.capacitiveSensor(50);
+  long sensor2 =  cs_9_10.capacitiveSensor(50);
+  long sensor3 =  cs_2_3.capacitiveSensor(50);
+  long sensor4 =  cs_24_26.capacitiveSensor(50);
+// FOR DEBUG
+  //Serial.println(sensor1);  // print sensor output
+  //Serial.println(sensor2);  // print sensor output
+  //Serial.println(sensor3);  // print sensor output
+
+  // This code only runs a simple sequence 1, 2, 3
+  // LEDs light and stay on until the corresponding key is pushed
+  // then the next LED in sequence lights and stays on until...
+  //digitalWrite(ledPin1,HIGH);
+//  wait for key touch #1
+  if (sensor1 >= 1000){
+    if (count == 0) {
+    tone(6, 261);   //play tone  1000Hz
+     digitalWrite(ledPin1,LOW);  //LED off
+     delay(noteRest); //wait for note to play
+     noTone(6);  // stop tone here
+     digitalWrite(ledPin2,HIGH);  // turn on -next- LED
+     count++;
+    }
+    if (count == 3) {
+       tone(6, 261);  //play tone 900Hz
+       digitalWrite(ledPin1,LOW); //LED off
+       delay(noteRest);  //wait for note to play
+       noTone(6);  // stop tone here
+       digitalWrite(ledPin4,HIGH);  // turn on -next- LED
+       count ++;
+    }
+     if (count == 7) {
+       tone(6, 261);  //play tone 900Hz
+       digitalWrite(ledPin1,LOW); //LED off
+       delay(noteRest);  //wait for note to play
+       noTone(6);  // stop tone here
+       digitalWrite(ledPin4,HIGH);  // turn on -next- LED
+       count ++;
+    }
+      if (count == 9) {
+       tone(6, 261);  //play tone 900Hz
+       digitalWrite(ledPin1,LOW); //LED off
+       delay(noteRest);  //wait for note to play
+       noTone(6);  // stop tone here
+       digitalWrite(ledPin3,HIGH);  // turn on -next- LED
+       count ++;
+    }
+         if (count == 11) {
+       tone(6, 349);  //play tone 900Hz
+       digitalWrite(ledPin1,LOW); //LED off
+       delay(noteRest);  //wait for note to play
+       noTone(6);  // stop tone here
+       digitalWrite(ledPin2,HIGH);  // turn on -next- LED
+       count ++;
+    }
+          if (count == 13) {
+       tone(6, 261);  //play tone 900Hz
+       digitalWrite(ledPin1,LOW); //LED off
+       delay(noteRest);  //wait for note to play
+       noTone(6);  // stop tone here
+       digitalWrite(ledPin4,HIGH);  // turn on -next- LED
+       count ++;
+    }
+              if (count == 15) {
+       tone(6, 440);  //play tone 900Hz
+       digitalWrite(ledPin1,LOW); //LED off
+       delay(noteRest);  //wait for note to play
+       noTone(6);  // stop tone here
+       digitalWrite(ledPin3,HIGH);  // turn on -next- LED
+       count ++;
+    }
+
+
+    
+  }
+  
+ if (sensor2 >= 1000) {
+  if (count == 1) {
+    tone(6, 261); //play tone 500Hz
+     digitalWrite(ledPin2,LOW); //LED off
+     delay(noteRest);  //wait for note to play
+     noTone(6);  // stop tone here
+     digitalWrite(ledPin3,HIGH);  // turn on -next- LED
+     count++;
+  }
+ if (count == 5) {  
+    tone(6, 329);  //play tone 900Hz
+     digitalWrite(ledPin2,LOW); //LED off
+     delay(noteRest);  //wait for note to play
+     noTone(6);  // stop tone here
+     digitalWrite(ledPin3,HIGH);  // turn on -next- LED
+     count++;
+  }
+ 
+    if (count == 12) {  
+    tone(6, 261);  //play tone 900Hz
+     digitalWrite(ledPin2,LOW); //LED off
+     delay(noteRest);  //wait for note to play
+     noTone(6);  // stop tone here
+     digitalWrite(ledPin1,HIGH);  // turn on -next- LED
+     count++;
+  }
+      if (count == 17) {
+       tone(6, 329);  //play tone 900Hz
+       digitalWrite(ledPin2,LOW); //LED off
+       delay(noteRest);  //wait for note to play
+       noTone(6);  // stop tone here
+       digitalWrite(ledPin4,HIGH);  // turn on -next- LED
+       count ++;
+    }
+    if (count == 20) {
+       tone(6, 466);  //play tone 900Hz
+       digitalWrite(ledPin2,LOW); //LED off
+       delay(noteRest);  //wait for note to play
+       noTone(6);  // stop tone here
+       digitalWrite(ledPin4,HIGH);  // turn on -next- LED
+       count ++;
+    }
+      if (count == 23) {
+       tone(6, 391);  //play tone 900Hz
+       digitalWrite(ledPin2,LOW); //LED off
+       delay(noteRest);  //wait for note to play
+       noTone(6);  // stop tone here
+       digitalWrite(ledPin4,HIGH);  // turn on -next- LED
+       count ++;
+    }
+     
+ 
+ }
+
+ if (sensor3 >= 1000) {
+    if (count == 2) {  
+    tone(6, 293);  //play tone 900Hz
+     digitalWrite(ledPin3,LOW); //LED off
+     delay(noteRest);  //wait for note to play
+     noTone(6);  // stop tone here
+     digitalWrite(ledPin1,HIGH);  // turn on -next- LED
+     count++;
+  }
+
+if (count == 6) {  
+    tone(6, 261);  //play tone 900Hz
+     digitalWrite(ledPin3,LOW); //LED off
+     delay(noteRest);  //wait for note to play
+     noTone(6);  // stop tone here
+     digitalWrite(ledPin1,HIGH);  // turn on -next- LED
+     count++;
+  }
+if (count == 10) {  
+    tone(6, 391);  //play tone 900Hz
+     digitalWrite(ledPin3,LOW); //LED off
+     delay(noteRest);  //wait for note to play
+     noTone(6);  // stop tone here
+     digitalWrite(ledPin1,HIGH);  // turn on -next- LED
+     count++;
+  }
+
+          if (count == 16) {
+       tone(6, 349);  //play tone 900Hz
+       digitalWrite(ledPin3,LOW); //LED off
+       delay(noteRest);  //wait for note to play
+       noTone(6);  // stop tone here
+       digitalWrite(ledPin2,HIGH);  // turn on -next- LED
+       count ++;
+    }
+     if (count == 19) {
+       tone(6, 466);  //play tone 900Hz
+       digitalWrite(ledPin3,LOW); //LED off
+       delay(noteRest);  //wait for note to play
+       noTone(6);  // stop tone here
+       digitalWrite(ledPin2,HIGH);  // turn on -next- LED
+       count ++;
+    }
+    if (count == 22) {
+       tone(6, 349);  //play tone 900Hz
+       digitalWrite(ledPin3,LOW); //LED off
+       delay(noteRest);  //wait for note to play
+       noTone(6);  // stop tone here
+       digitalWrite(ledPin2,HIGH);  // turn on -next- LED
+       count ++;
+    }
+
+   
+ }
+
+  if (sensor4 >= 1000){
+    if (count == 4) {  
+    tone(6, 349);  //play tone 900Hz
+     digitalWrite(ledPin4,LOW); //LED off
+     delay(noteRest);  //wait for note to play
+     noTone(6);  // stop tone here
+     digitalWrite(ledPin2,HIGH);  // turn on -next- LED
+     count++;
+  }
+
+ if (count == 8) {  
+    tone(6, 293);  //play tone 900Hz
+     digitalWrite(ledPin4,LOW); //LED off
+     delay(noteRest);  //wait for note to play
+     noTone(6);  // stop tone here
+     digitalWrite(ledPin1,HIGH);  // turn on -next- LED
+     count++;
+  }
+if (count == 14) {  
+    tone(6, 523);  //play tone 900Hz
+     digitalWrite(ledPin4,LOW); //LED off
+     delay(noteRest);  //wait for note to play
+     noTone(6);  // stop tone here
+     digitalWrite(ledPin1,HIGH);  // turn on -next- LED
+     count++;
+  }
+
+               if (count == 18) {
+       tone(6, 293);  //play tone 900Hz
+       digitalWrite(ledPin4,LOW); //LED off
+       delay(noteRest);  //wait for note to play
+       noTone(6);  // stop tone here
+       digitalWrite(ledPin3,HIGH);  // turn on -next- LED
+       count ++;
+    }
+
+              if (count == 21) {
+       tone(6, 440);  //play tone 900Hz
+       digitalWrite(ledPin4,LOW); //LED off
+       delay(noteRest);  //wait for note to play
+       noTone(6);  // stop tone here
+       digitalWrite(ledPin3,HIGH);  // turn on -next- LED
+       count ++;
+    }
+           if (count == 24) {
+       tone(6, 349);  //play tone 900Hz
+       digitalWrite(ledPin4,LOW); //LED off
+       delay(noteRest);  //wait for note to play
+       noTone(6);  // stop tone here
+       digitalWrite(ledPin3,HIGH);  // turn on -next- LED
+       count ++;
+    }  
+  }
+//  else if (sensor1 >= 1000) {
+//    tone(6, 900);  //play tone 900Hz
+//     digitalWrite(ledPin1,LOW); //LED off
+//     delay(noteRest);  //wait for note to play
+//     noTone(6);  // stop tone here
+//     digitalWrite(ledPin3,HIGH);  // turn on -next- LED
+//  }
+//
+//  else if (sensor3 >= 1000) {
+//    tone(6, 900);  //play tone 900Hz
+//     digitalWrite(ledPin3,LOW); //LED off
+//     delay(noteRest);  //wait for note to play
+//     noTone(6);  // stop tone here
+//     digitalWrite(ledPin1,HIGH);  // turn on -next- LED
+//  }
+//
+
+
+
+  else {
+    // stop tone here
+    noTone(6);
+  }
+
+}
 
